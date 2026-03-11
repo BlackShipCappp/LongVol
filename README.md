@@ -309,17 +309,18 @@ if days_to_earnings < 21:
 
 ## 8. Data Sources
 
-| Data | Source | Coverage | Size |
-|------|--------|----------|------|
-| ETF 5-min option surfaces (22 ETFs) | HDD: `/Volumes/EXTERNAL_US/Cross_asset_Surfaces_5min/` | Jan 2020 – Dec 2025 | ~125 GB (parquet) |
-| Single-name earnings surfaces (53 names) | OneDrive: `Earnings_Trader_Options/data_theta_v3/` | Q1 2022 – Q2 2025 | 64 GB |
-| SPY/SPXW 1-min underlying | OneDrive: `Trading_Platform/DATA/` | 2022 – present | ~12 GB |
-| VIX daily surfaces | OneDrive: `ShortTheVix/DATA/VIX_Options/` | 2017 – 2025 | — |
-| VIX futures 1-min | OneDrive: `ShortTheVix/DATA/` | 204 contracts | — |
+We currently have full 5-minute option surface data for 22 ETFs stored on an external HDD. Each file follows the format shown in the sample below and covers January 2020 – December 2025. All files are in parquet format.
 
-All ETF surface files are in **parquet format** (converted March 2026).
+**ETF universe:** SPY, QQQ, IWM, GLD, TLT, SLV, USO, EEM, EFA, EWZ, FXI, HYG, LQD, XLB, XLE, XLF, XLI, XLK, XLP, XLU, XLV, XLY
 
-Available columns per row: `trade_date, expiration, dte, symbol, strike, right, timestamp, bid, ask, delta, theta, vega, rho, gamma, vanna, charm, vomma, implied_vol, underlying_price` + higher-order Greeks.
+**Sample row structure:**
+```
+trade_date, expiration, dte, symbol, strike, right, timestamp,
+bid, ask, delta, theta, vega, rho, gamma, vanna, charm, vomma,
+implied_vol, underlying_price, [higher-order Greeks]
+```
+
+Single-name earnings surfaces and additional underlying data will be added in Phase 2.
 
 ---
 
